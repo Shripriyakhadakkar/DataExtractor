@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DataExtractor.Console/DataExtractor.Console.csproj" />
+    <Project Path="src/DataExtractor.Core/DataExtractor.Core.csproj" />
+    <Project Path="src/DataExtractor.Infrastructure/DataExtractor.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DataExtractor.Tests/DataExtractor.Tests.csproj" />
+  </Folder>
+</Solution>
