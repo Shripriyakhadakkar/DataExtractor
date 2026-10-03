@@ -3,3 +3,4 @@ obj/
 .vs/
 *.user
 *_output.csv
+!samples/barclays_expected_output.csv
