@@ -20,4 +20,8 @@
     <ProjectReference Include="..\..\src\DataExtractor.Infrastructure\DataExtractor.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+  <None Include="..\..\samples\*.csv" Link="samples\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+
 </Project>
