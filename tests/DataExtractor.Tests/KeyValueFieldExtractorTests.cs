@@ -4,7 +4,7 @@ namespace DataExtractor.Tests;
 
 public class KeyValueFieldExtractorTests
 {
-    private readonly KeyValueFieldExtractor _extractor = new("Contract Size", "AlgoParams", "PriceMultiplier");
+    private readonly KeyValueFieldExtractor _extractor = new("ContractSize", "AlgoParams", "PriceMultiplier");
 
     private string Extract(string algoParams) =>
         _extractor.Extract(new Dictionary<string, string> { ["AlgoParams"] = algoParams });
@@ -36,6 +36,6 @@ public class KeyValueFieldExtractorTests
     [Fact]
     public void Header_ReturnsConfiguredHeader()
     {
-        Assert.Equal("Contract Size", _extractor.Header);
+        Assert.Equal("ContractSize", _extractor.Header);
     }
 }
