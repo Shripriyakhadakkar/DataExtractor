@@ -10,17 +10,35 @@ public sealed class CsvHelperRecordReader : IRecordReader
     {
         using var csv = new CsvReader(input, CultureInfo.InvariantCulture);
 
-        csv.Read();
-        csv.ReadHeader();
-        var headers = csv.HeaderRecord!;
-
-        while (csv.Read())
+        var headers = AsInvalidData(() =>
         {
-            var record = new Dictionary<string, string>();
-            for (var column = 0; column < headers.Length; column++)
-                record[headers[column]] = csv.GetField(column) ?? string.Empty;
+            csv.Read();
+            csv.ReadHeader();
+            return csv.HeaderRecord!;
+        });
 
-            yield return record;
+        while (AsInvalidData(csv.Read))
+            yield return AsInvalidData(() => ReadRecord(csv, headers));
+    }
+
+    private static Dictionary<string, string> ReadRecord(CsvReader csv, string[] headers)
+    {
+        var record = new Dictionary<string, string>();
+        for (var column = 0; column < headers.Length; column++)
+            record[headers[column]] = csv.GetField(column) ?? string.Empty;
+
+        return record;
+    }
+
+    private static T AsInvalidData<T>(Func<T> action)
+    {
+        try
+        {
+            return action();
+        }
+        catch (CsvHelperException ex)
+        {
+            throw new InvalidDataException($"The input is not valid CSV. {ex.Message}", ex);
         }
     }
 }
