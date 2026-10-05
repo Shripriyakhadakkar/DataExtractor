@@ -126,7 +126,7 @@ rows seen is held in memory.
 
 1. Add one class in `src/DataExtractor.Infrastructure/Banks/` that implements `IBankProfile`.
 2. List its output fields with the existing extractors.
-3. Override `PreProcess` only if the file is not valid CSV.
+3. Override `PreProcess` only if the bank's input requires preprocessing before CSV parsing.
 
 That is all. DI scans the assembly and registers every `IBankProfile`, and the registry finds
 it by name. No existing file changes. Example (an invented bank with different column names)
