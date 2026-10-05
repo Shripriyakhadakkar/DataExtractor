@@ -79,7 +79,7 @@ public class ExtractionEndToEndTests
     }
 
     [Fact]
-    public void Extract_ProducesTheExpectedRows_ForTheSampleBarclaysFile()
+    public void Extract_ProducesTheExpectedFile_ForTheSampleBarclaysFile()
     {
         var input = File.ReadAllText(SamplePath("barclays_input.csv"));
         var expected = Lines(File.ReadAllText(SamplePath("barclays_expected_output.csv")));
@@ -87,7 +87,7 @@ public class ExtractionEndToEndTests
         var actual = Lines(Run(CreateService(), "Barclays", input));
 
         Assert.Equal("ISIN,CFICode,Venue,ContractSize", actual[0]);
-        Assert.Equal(expected.Skip(1), actual.Skip(1));
+        Assert.Equal(expected, actual);
     }
 
     private static string SamplePath(string fileName) =>
