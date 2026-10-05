@@ -12,7 +12,7 @@ public sealed class BarclaysProfile : IBankProfile
         new SimpleFieldExtractor("ISIN"),
         new SimpleFieldExtractor("CFICode"),
         new SimpleFieldExtractor("Venue"),
-        new KeyValueFieldExtractor(header: "Contract Size", sourceColumn: "AlgoParams", key: "PriceMultiplier"),
+        new KeyValueFieldExtractor(header: "ContractSize", sourceColumn: "AlgoParams", key: "PriceMultiplier"),
     ];
 
     public TextReader PreProcess(TextReader input)
