@@ -18,7 +18,7 @@ public class BarclaysProfileTests
     {
         var headers = _profile.Fields.Select(field => field.Header);
 
-        Assert.Equal(new[] { "ISIN", "CFICode", "Venue", "Contract Size" }, headers);
+        Assert.Equal(new[] { "ISIN", "CFICode", "Venue", "ContractSize" }, headers);
     }
 
     [Fact]
