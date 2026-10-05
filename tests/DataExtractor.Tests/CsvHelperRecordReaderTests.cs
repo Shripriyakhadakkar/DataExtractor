@@ -38,4 +38,13 @@ public class CsvHelperRecordReaderTests
 
         Assert.Equal("A,1", records[0]["ISIN"]);
     }
+
+    [Fact]
+    public void Read_ThrowsInvalidDataException_WhenARowHasFewerFieldsThanTheHeader()
+    {
+        var reader = new CsvHelperRecordReader();
+
+        Assert.Throws<InvalidDataException>(
+            () => reader.Read(new StringReader("ISIN,Venue\nA1\n")).ToList());
+    }
 }
